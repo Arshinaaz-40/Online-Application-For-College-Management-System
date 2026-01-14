@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/css/LoginPage.css">
+</head>
+<body>
+    <div class="container">
+        <div class="leftContainer">
+            <img id="imaged" src="/images/LoginImage.jpg" alt="Login Image">
+        </div>
+        <div class="rightContainer">
+            <h2 id="wishHeading">Welcome Back!</h2>
+            <p id="accountFind">Don't have an account yet? <a href="Signup.html" id="accountFind_signup">Sign Up</a></p>
+            <form action="/bat" method="POST">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

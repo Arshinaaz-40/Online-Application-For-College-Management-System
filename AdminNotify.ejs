@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <title>Admin Notifications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Header */
+        #MainHeading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #004d99;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        #MainHeading h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #003366;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #0066cc;
+            border-radius: 5px;
+        }
+
+        /* Notification Form */
+        .container {
+            max-width: 50%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Notifications Section */
+        .notification-container {
+            max-width: 60%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Notification Table */
+        .notification-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .notification-table th, .notification-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .notification-table th {
+            background-color: #004d99;
+            color: white;
+            font-size: 16px;
+        }
+
+        .notification-table td {
+            font-size: 14px;
+        }
+
+        /* Alternate row background */
+        .notification-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div id="MainHeading">
+    <img src="/images/bitswgl_logo.jpg" alt="" height="50px" width="50px">
+    <h1>BITS College OAMS <i class="bi bi-mortarboard-fill"></i></h1>
+    <h3><i class="bi bi-person-circle"></i>&nbsp;Admin</h3>
+</div>
+
+<nav>
+    <ul>
+        <li><a href="/adminDashboard"><i class="bi bi-card-checklist"></i> Applications</a></li>
+        <li><a href="/AdminSearchPage"><i class="bi bi-search"></i> Search </a></li>
+        <li><a href="/notifications"><i class="bi bi-bell"></i> Notifications </a></li>
+        <li><a href="/AdminLoginPage"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2>Post a Notification</h2>
+    <input type="text" id="notificationInput" placeholder="Enter notification message">
+    <button onclick="postNotification()">Post Notification</button>
+</div>
+
+<div class="notification-container">
+    <h3>Notifications & Updates</h3>
+    <div id="notificationsContainer"></div>
+</div>
+
+<script>
+    async function postNotification() {
+        const message = document.getElementById("notificationInput").value;
+        if (!message) {
+            alert("Please enter a notification message.");
+            return;
+        }
+
+        const response = await fetch('/api/notifications', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        });
+
+        if (response.ok) {
+            document.getElementById("notificationInput").value = "";
+            fetchNotifications(); // Refresh notifications list
+        }
+    }
+
+    async function fetchNotifications() {
+        const response = await fetch('/api/notifications');
+        const data = await response.json();
+
+        const container = document.getElementById("notificationsContainer");
+        container.innerHTML = "";
+
+        if (data.length === 0) {
+            container.innerHTML = "<p>No notifications available.</p>";
+            return;
+        }
+
+        let tableHTML = `
+            <table class="notification-table">
+                <tr>
+                    <th>Notification</th>
+                    <th>Date</th>
+                </tr>
+        `;
+
+        data.forEach(notification => {
+            tableHTML += `
+                <tr>
+                    <td>${notification.message}</td>
+                    <td>${new Date(notification.timestamp).toLocaleString()}</td>
+                </tr>
+            `;
+        });
+
+        tableHTML += `</table>`;
+        container.innerHTML = tableHTML;
+    }
+
+    fetchNotifications(); // Load notifications on page load
+</script>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Certificate</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="/css/ApplyForCertificates.css"> -->
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        #MainHeading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #003366;
+            color: white;
+            padding: 10px 20px;
+        }
+        #MainHeading img {
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+        }
+        #textInHeading {
+            font-size: 20px;
+            margin-left: 10px;
+        }
+        #welcomeMessage {
+            font-size: 16px;
+        }
+        #studentNavbar {
+            background: #00509e;
+            padding: 8px 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        .navLi a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        } 
+        .navLi a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        #content {
+            max-width: 500px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .btn-primary {
+            font-size: 14px;
+            padding: 8px;
+        }
+        footer {
+            background: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .textLogout a {
+            background: red;
+            padding: 6px 10px;
+            border-radius: 4px;
+        }
+        .textLogout a:hover {
+            background: darkred;
+        }
+     </style>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="MainHeading">
+        <img src="/images/bitswgl_logo.jpg" alt="" height="50px" width="50px">
+        <h1 id="textInHeading">BITS College OAMS <i class="bi bi-mortarboard-fill"></i></h1>
+        <h3 id="welcomeMessage"><i class="bi bi-person-circle"></i>&nbsp;Student</h3>
+    </div>
+    <div id="studentNavbar">
+        <ul class="navbar">
+            <li class="navLi"><a href="/student"><i class="bi bi-house"></i>&nbsp; Student Dashboard</a></li>
+            <li class="navLi"><a href="/ApplyForCertificates"><i class="bi bi-file-earmark-text-fill"></i>&nbsp; Apply for Certificate</a></li>
+            <!-- <a href="/trackstatuspage?email=user@example.com">Track Status</a> -->
+             <li class="navLi"><a href="/trackstatuspage?email=user@example.com"><i class="bi bi-clipboard2"></i>&nbsp; Track Status</a></li>
+
+            <li class="navLi"><a href="Instructions"><i class="bi bi-patch-question-fill"></i>&nbsp; Instructions</a></li>
+            <li class="navLi textLogout"><a href="/logout"><i class="bi bi-box-arrow-right"></i>&nbsp; Logout</a></li>
+       </ul>
+    </div>
+    <div id="content">
+        <div class="card shadow-lg p-4">
+            <h3 class="text-center text-primary">Apply for Certificate</h3>
+            <p class="text-center text-muted">Fill in the details to request a certificate.</p>
+
+            <form action="/apply" method="POST" id="applyForm">
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="fullname" placeholder="Full Name" required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="tel" class="form-control" name="mobile" placeholder="Mobile Number" required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="hallticket" placeholder="Hall Ticket Number" required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="number" class="form-control" name="passout_year" placeholder="Passout Year" required>
+                </div>
+
+                <div class="mb-3">
+                    <select class="form-select" name="branch" required>
+                        <option value="" disabled selected>Branch</option>
+                        <option value="CSM">CSM</option>
+                        <option value="CSW">CSW</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="MECH">MECH</option>
+                        <option value="CIVIL">CIVIL</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <select class="form-select" name="apply_for" required>
+                        <option value="" disabled selected>Certificate Type</option>
+                        <option value="Marks Sheet">Marks Sheet</option>
+                        <option value="Memo">Memo</option>
+                        <option value="TC">Transfer Certificate</option>
+                        <option value="Bonafide Certificate">Bonafide Certificate</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <textarea class="form-control" name="reason" placeholder="Reason for Request" rows="3" required></textarea>
+                </div>
+                <input type="hidden" id="collection_date" name="collection_date" value="">
+
+                <button type="submit" class="btn btn-primary w-100">Submit Application</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <footer>
+        <p>&copy; 2025 BITS College | All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    function getCollectionDate(startDate) {
+        let date = new Date(startDate);
+        let daysAdded = 0;
+
+        while (daysAdded < 5) { // Ensure 5 working days
+            date.setDate(date.getDate() + 1);
+            let day = date.getDay(); // 0 = Sunday, 6 = Saturday
+            if (day !== 0 && day !== 6) { // Skip weekends
+                daysAdded++;
+            }
+        }
+
+        return date.toISOString().split('T')[0]; // Format YYYY-MM-DD
+    }
+
+    let form = document.getElementById("applyForm");
+    if (form) { // Null check to avoid errors
+        form.addEventListener("submit", function () {
+            let today = new Date().toISOString().split('T')[0]; // Get current date
+            let collectionDate = getCollectionDate(today);
+            
+            // Set collection date in the hidden field before form submission
+            document.getElementById("collection_date").value = collectionDate;
+        });
+    }
+});
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/css/StudentDashboard.css">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+#MainHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #003366;
+    color: white;
+    padding: 15px 30px;
+}
+
+#MainHeading img {
+    border-radius: 50%;
+}
+
+#textInHeading {
+    font-size: 24px;
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+#welcomeMessage {
+    font-size: 18px;
+}
+
+
+#studentNavbar {
+    background: #00509e;
+    padding: 10px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.navLi {
+    margin: 0 15px;
+}
+
+.navLi a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.navLi a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+#content {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#userName h1 {
+    color: #00509e;
+}
+
+#textmsgWelmsg {
+    font-size: 16px;
+    color: #666;
+}
+
+
+#contentApp {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.namesOfApp {
+    background: #007BFF;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.myApplication {
+    font-size: 18px;
+}
+
+footer {
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}
+/* Notifications Section */
+#notify {
+    max-width: 800px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#notify h3 {
+    color: #00509e;
+    margin-bottom: 15px;
+}
+
+/* Notification Table */
+#notify table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#notify table, #notify th, #notify td {
+    border: 1px solid #ddd;
+}
+
+#notify th, #notify td {
+    padding: 12px;
+    text-align: left;
+}
+
+#notify th {
+    background: #00509e;
+    color: white;
+}
+
+#notify tbody tr:nth-child(even) {
+    background: #f4f4f4;
+}
+
+#notify tbody tr:hover {
+    background: #dbe9ff;
+    cursor: pointer;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div id="MainHeading">
+        <img src="/images/bitswgl_logo.jpg" alt="" height="50px" width="50px">
+        <h1 id="textInHeading">BITS College OAMS <i class="bi bi-mortarboard-fill"></i></h1>
+        <h3 id="welcomeMessage"><i class="bi bi-person-circle"></i>&nbsp;Student</h3>
+    </div>
+    <div id="studentNavbar">
+        <ul class="navbar">
+            <li class="navLi"><a href="/student"><i class="bi bi-house"></i>&nbsp; Student Dashboard</a></li>
+            <li class="navLi"><a href="/ApplyForCertificates"><i class="bi bi-file-earmark-text-fill"></i>&nbsp; Apply for Certificate</a></li>
+            <!-- <a href="/trackstatuspage?email=user@example.com">Track Status</a> -->
+             <li class="navLi"><a href="/trackstatuspage?email=user@example.com"><i class="bi bi-clipboard2"></i>&nbsp; Track Status</a></li>
+
+            <li class="navLi"><a href="Instructions"><i class="bi bi-patch-question-fill"></i>&nbsp; Instructions</a></li>
+            <!-- <li class="navLi textLogout"><a href="/logout"><i class="bi bi-box-arrow-right"></i>&nbsp; Logout</a></li> -->
+            <li class="navLi textLogout">
+                <a href="/logout" onclick="window.location.href='/logout'; return false;">
+                    <i class="bi bi-box-arrow-right"></i>&nbsp; Logout
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div id="content">
+        <div id="userName">
+            <h2 id="welmsg"></h2>
+            <h1>Welcome, <%= username %>!</h1>
+            <p id="textmsgWelmsg">This is the main content area where student information, certificates, and other details will be displayed.</p>
+        </div>
+       <div id="contentApp">
+            <div class="namesOfApp">
+                <h4 class="myApplication myApplication1">Total <br> Applications</h4>
+                <h4 class="myApplication myApplication1"><%= totalApplications %></h4>
+            </div>
+        </div>
+    </div>
+    <div id="notify">
+        <h3>Notifications & Updates</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Notification</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% notifications.forEach(notification => { %>
+                    <tr>
+                        <td><%= notification %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 BITS College | All rights reserved.</p>
+    </footer>
+</body>
+</html>

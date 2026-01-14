@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Navbar</title>
+    <!-- <link rel="stylesheet" href="/css/Myhomepage.css"> -->
+     <style>
+        /* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #004080;
+    color: white;
+    padding: 15px 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Styling */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.logo h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Navigation Styling */
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Hero Section */
+#displayed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+    background: linear-gradient(to right, #004080, #0066cc);
+    color: white;
+    min-height: 400px;
+}
+
+#displayedMain h2 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+#displayedMain p {
+    font-size: 18px;
+    margin: 15px 0;
+    max-width: 500px;
+}
+
+.DisplayedButtons a {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    background: #ffcc00;
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.DisplayedButtons a:hover {
+    background: #ffaa00;
+}
+
+.image-container img {
+    width: 300px;
+    border-radius: 10px;
+    margin-left: 20px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* About Section */
+#sectionTwo {
+    background: #ffffff;
+    padding: 50px;
+    text-align: center;
+}
+
+#AboutSystem h3 {
+    font-size: 28px;
+    color: #004080;
+    margin-bottom: 20px;
+}
+
+/* About Cards */
+.about-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.about-card {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards ease-in-out;
+}
+
+.about-card:hover {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.about-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #004080;
+}
+
+.about-card p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Footer */
+footer {
+    background: #004080;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.footer-content p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    #displayed {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .image-container {
+        margin-top: 20px;
+    }
+
+    .about-cards {
+        flex-direction: column;
+    }
+
+    .about-card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+     </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/images/bitswgl_logo.jpg" alt="BITS Logo">
+            <h3>BITS College OAMS</h3>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/Myhomepage">Home</a></li>
+                <li><a href="#sectionTwo">About</a></li>
+                <li><a href="/LoginPage">Student Login</a></li>
+                <li><a href="/AdminLoginPage">Admin Login</a></li>
+                <li><a href="/SignUpPage">SignUp</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="displayed">
+        <div id="displayedMain">
+            <h2>Welcome to BITS College OAMS</h2>
+            <p>Apply for certificates, track your application status, and manage all your academic documents effortlessly in one secure place.</p>
+            <div class="DisplayedButtons">
+                <a href="/LoginPage">Apply Now</a>
+                <a href="/LoginPage">Login to Dashboard</a>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="/images/Application.jpg" alt="BITS College Image">
+        </div>
+    </section>
+    
+    <section id="sectionTwo">
+        <div id="AboutSystem">
+            <h3>About Our System</h3>
+        </div>
+        <div>
+            <div class="about-cards">
+                <div class="about-card opacity-0">
+                    <div class="card-icon">📄</div>
+                    <h3>Certificate Management</h3>
+                    <p>Request and track various academic certificates through our simple and efficient online system.</p>
+                </div>
+                
+                <div class="about-card opacity-0">
+                    <div class="card-icon">🔒</div>
+                    <h3>Secure Verification</h3>
+                    <p>All documents are securely verified and processed with encryption to ensure your information stays protected.</p>
+                </div>
+                
+                <div class="about-card opacity-0">
+                    <div class="card-icon">⏱</div>
+                    <h3>Track Status</h3>
+                    <p>Get updates on tracking your  application status with our real-time notification system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <p><strong>College Address:</strong> Warangal, Narasampet, Telangana</p>
+            <p><strong>Phone:</strong> 080-98989898</p>
+            <br>
+            <p><strong>Email:</strong> bitswgloams3@gmail.com</p>
+            <p>&copy; 2025 BITS College OAMS. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/SignUpPage.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="leftContainer">
+            <img id="imaged" src="/images/SignupImage.jpg" alt="Signup Image">
+        </div>
+        <div class="rightContainer">
+            <h2 id="headingsection">Create Your Account</h2>
+            <p id="message">Already have an account? <a id="navigate" href="loginPage.html">Log In</a></p>
+            <form action="/reg" method="POST">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+                <label for="passoutYear">Pass-out Year</label>
+                <input type="number" id="passoutYear" name="passoutYear" placeholder="Enter your pass-out year" required>
+            
+                <label for="branch">Branch</label>
+                <select id="branch" name="branch">
+                    <option value="csm">CSM</option>
+                    <option value="csw">CSW</option>
+                    <option value="cse">CSE</option>
+                    <option value="ece">ECE</option>
+                    <option value="mech">MECH</option>
+                    <option value="civil">CIVIL</option>
+                </select>
+            
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+            
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            
+                <label for="repassword">Re-enter Password</label>
+                <input type="password" id="repassword" name="repassword" placeholder="Re-enter your password" required>
+            
+                <button type="submit">Sign Up</button>
+            </form>
+            
+        </div>
+    </div>
+</body>
+</html>
